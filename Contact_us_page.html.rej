@@ -1,0 +1,23 @@
+diff a/Contact_us_page.html b/Contact_us_page.html	(rejected hunks)
+@@ -13,17 +13,16 @@
+ 		<!-- Navigation -->
+ 		<nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
+ 			<div class="container">
+ 				<!-- Brand and toggle get grouped for better mobile display -->
+ 				<a class="navbar-brand page-scroll" href="#page-top">
+ 					<img src="../img/logo/logo_300px.png" alt="logo" class="logo" style="
+-																						 /* display: none; */
+-																						 height: 30px;
+-																						 margin-top: 10px;
+-																						 "></a>
+-
++				 /* display: none; */
++				 height: 30px;
++				 margin-top: 10px;
++				 "></a>
+ 				<!-- Collect the nav links, forms, and other content for toggling -->
+ 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+ 					<ul class="nav navbar-nav navbar-right">
+ 						<li class="hidden">
+ 							<a href="#page-top"></a>
+ 						</li>
