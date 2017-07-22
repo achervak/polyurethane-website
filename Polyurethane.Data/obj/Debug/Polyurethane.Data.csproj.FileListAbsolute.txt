@@ -1,0 +1,9 @@
+C:\[WORK]\polyurethane-website\Polyurethane.Data\bin\Debug\Polyurethane.Data.dll.config
+C:\[WORK]\polyurethane-website\Polyurethane.Data\bin\Debug\Polyurethane.Data.dll
+C:\[WORK]\polyurethane-website\Polyurethane.Data\bin\Debug\Polyurethane.Data.pdb
+C:\[WORK]\polyurethane-website\Polyurethane.Data\bin\Debug\EntityFramework.dll
+C:\[WORK]\polyurethane-website\Polyurethane.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\[WORK]\polyurethane-website\Polyurethane.Data\bin\Debug\EntityFramework.xml
+C:\[WORK]\polyurethane-website\Polyurethane.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\[WORK]\polyurethane-website\Polyurethane.Data\obj\Debug\Polyurethane.Data.dll
+C:\[WORK]\polyurethane-website\Polyurethane.Data\obj\Debug\Polyurethane.Data.pdb
