@@ -156,10 +156,10 @@ a.socialIcon:hover, .socialHoverClass {
 }
 
 .social-circle li a:hover i, .triggeredHover {
-	-moz-transform: scale(360deg);
-	-webkit-transform: scale(360deg);
-	-ms--transform: scale(360deg);
-	transform: scale(360deg);
+	-moz-transform: scale(1.1);
+	-webkit-transform: scale(1.1);
+	-ms--transform: scale(1.1);
+	transform: scale(1.1);
 	-webkit-transition: all 0.2s;
 	-moz-transition: all 0.2s;
 	-o-transition: all 0.2s;

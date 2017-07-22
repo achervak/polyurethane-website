@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "polyurethane-website", "polyurethane-website\polyurethane-website.csproj", "{8DF009E1-7841-417D-A9AD-B3B97138FC69}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polyurethane.Data", "Polyurethane.Data\Polyurethane.Data.csproj", "{2829802A-4EEA-417D-A848-7F02D5D75B03}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{8DF009E1-7841-417D-A9AD-B3B97138FC69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DF009E1-7841-417D-A9AD-B3B97138FC69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DF009E1-7841-417D-A9AD-B3B97138FC69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2829802A-4EEA-417D-A848-7F02D5D75B03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2829802A-4EEA-417D-A848-7F02D5D75B03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2829802A-4EEA-417D-A848-7F02D5D75B03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2829802A-4EEA-417D-A848-7F02D5D75B03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
