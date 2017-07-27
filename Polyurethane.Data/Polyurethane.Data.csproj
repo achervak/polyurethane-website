@@ -52,11 +52,15 @@
     <Compile Include="Entities\CarEntity.cs" />
     <Compile Include="Entities\DetailEntity.cs" />
     <Compile Include="Entities\DetailInCarEntity.cs" />
+    <Compile Include="Entities\ParameterEntity.cs" />
     <Compile Include="Entities\ImageEntity.cs" />
     <Compile Include="Entities\ImageInDetailEntity.cs" />
     <Compile Include="Entities\ImageInCarEntity.cs" />
+    <Compile Include="Entities\ParamGroupEntity.cs" />
     <Compile Include="Initializers\PolyurethaneContextInitializer.cs" />
     <Compile Include="Interfaces\IDataProvider.cs" />
+    <Compile Include="Models\DetailParamModel.cs" />
+    <Compile Include="Models\Detail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\EFDataProvider.cs" />
   </ItemGroup>

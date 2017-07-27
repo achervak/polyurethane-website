@@ -7,3 +7,4 @@ C:\[WORK]\polyurethane-website\Polyurethane.Data\bin\Debug\EntityFramework.xml
 C:\[WORK]\polyurethane-website\Polyurethane.Data\bin\Debug\EntityFramework.SqlServer.xml
 C:\[WORK]\polyurethane-website\Polyurethane.Data\obj\Debug\Polyurethane.Data.dll
 C:\[WORK]\polyurethane-website\Polyurethane.Data\obj\Debug\Polyurethane.Data.pdb
+C:\[WORK]\polyurethane-website\Polyurethane.Data\obj\Debug\Polyurethane.Data.csprojResolveAssemblyReference.cache

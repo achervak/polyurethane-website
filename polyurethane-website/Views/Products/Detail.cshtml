@@ -1,0 +1,72 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model polyurethane_website.Models.DetailModel
+
+<div class="container">
+    <div class="row" style="padding-top: 80px">
+        <div class="col-md-5">
+            <img src="@Model.Images.FirstOrDefault().Url" class="img-polaroid" alt="Sample Image" style="width: 320px;height: 300px;">
+        </div>
+        <div class="col-md-7">
+            <h2>@Model.Name</h2>
+            <h4 class="muted">@Model.ShortDescription</h4>
+            <p>@Model.Description</p>
+            <hr>
+            @*<h3>Price - <del class="text-error">$699</del> $499</h3>
+            <p class="muted">Inclusive of all taxes. Free home delivery.</p>*@
+            <br>
+            <p>
+                <a href="#" class="btn btn-success btn-large">Додати в корзину</a>
+                <a href="#" class="btn btn-success btn-large">Замовити</a>
+            </p>
+        </div>
+    </div>
+    <div class="row" style="margin-bottom: 25px;"></div>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs">
+                <li class="active"><a data-toggle="tab" href="#tab-1">Specification</a></li>
+                <li><a data-toggle="tab" href="#tab-2">Key Features</a></li>
+            </ul>
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane fade in active">
+                    <table class="table table-striped">
+                        <tbody>
+                        @foreach (var param in @Model.Params)
+                        {
+                            <tr>
+                                <th>@param.Key</th>
+                                <td>@param.Value</td>
+                            </tr>    
+                        }
+                        </tbody>
+                    </table>
+                </div>
+                <div id="tab-2" class="tab-pane fade">
+                    <table class="table table-striped">
+                        <tbody>
+                            <tr>
+                                <td>Windows 8 OS</td>
+                            </tr>
+                            <tr>
+                                <td>Intel Dual Core Processor</td>
+                            </tr>
+                            <tr>
+                                <td>18.5 Inch LED Screen</td>
+                            </tr>
+                            <tr>
+                                <td>Integrated Graphics</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

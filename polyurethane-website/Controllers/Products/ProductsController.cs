@@ -4,7 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
-using Polyurethane.Data.Entities;
+using polyurethane_website.Mappers;
+using polyurethane_website.Models;
 using Polyurethane.Data.Interfaces;
 
 namespace polyurethane_website.Controllers.Products
@@ -19,23 +20,15 @@ namespace polyurethane_website.Controllers.Products
         }
 
         [HttpGet]
-        [Route("management/car/create")]
-        public ViewResult CreateNewCar()
+        [Route("management/detail/show/{guid}")]
+        public async Task<ActionResult> Detail(Guid guid)
         {
-            return View("CreateNewCar");
-        }
+            var dbDetail = await _dataProvider.GetDetail(guid);
+            if (dbDetail == null)
+                Redirect("notfound");
 
-        public async Task<string> Test()
-        {
-            var car = await _dataProvider.CreateCar(new CarEntity()
-            {
-                Make = "Ford",
-                Model = "Focus",
-                YearStart = 2001,
-                YearEnd = 2005,
-            });
-
-            return car.Id.ToString();
+            var model = new DetailMapper().Map(dbDetail);
+            return View(model);
         }
     }
 }
