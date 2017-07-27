@@ -1,0 +1,121 @@
+﻿
+@{
+    ViewBag.Title = "AdminHome";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Actions</h2>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="square-service-block">
+                <a href="/management/detail/create">
+                    <div class="ssb-icon"><i class="fa fa-paint-brush" aria-hidden="true"></i></div>
+                    <h2 class="ssb-title">Створити продукт</h2>  
+                </a>
+            </div>
+        </div>
+          
+        <div class="col-md-3">
+            <div class="square-service-block">
+                <a href="/management/car/create">
+                    <div class="ssb-icon"> <i class="fa fa-globe" aria-hidden="true"></i> </div>
+                    <h2 class="ssb-title">Створити авто</h2>  
+                </a>
+            </div>
+        </div>
+          
+        <div class="col-md-3">
+            <div class="square-service-block">
+                <a href="#">
+                    <div class="ssb-icon"><i class="fa fa-camera" aria-hidden="true"></i></div>
+                    <h2 class="ssb-title">Photography</h2>  
+                </a>
+            </div>
+        </div>
+          
+        <div class="col-md-3">
+            <div class="square-service-block">
+                <a href="#">
+                    <div class="ssb-icon"><i class="fa fa-font" aria-hidden="true"></i></div>
+                    <h2 class="ssb-title">Fonts</h2>  
+                </a>
+            </div>
+        </div>
+          
+        <div class="col-md-3">
+            <div class="square-service-block">
+                <a href="#">
+                    <div class="ssb-icon"><i class="fa fa-cubes" aria-hidden="true"></i></div>
+                    <h2 class="ssb-title">Mockups</h2>  
+                </a>
+            </div>
+        </div>
+          
+        <div class="col-md-3">
+            <div class="square-service-block">
+                <a href="#">
+                    <div class="ssb-icon"><i class="fa fa-eyedropper" aria-hidden="true"></i></div>
+                    <h2 class="ssb-title">Colours</h2>  
+                </a>
+            </div>
+        </div>
+          
+        <div class="col-md-3">
+            <div class="square-service-block">
+                <a href="#">
+                    <div class="ssb-icon"><i class="fa fa-youtube" aria-hidden="true"></i> </div>
+                    <h2 class="ssb-title">Video</h2>  
+                </a>
+            </div>
+        </div>
+          
+        <div class="col-md-3">
+            <div class="square-service-block">
+                <a href="#">
+                    <div class="ssb-icon"><i class="fa fa-volume-up" aria-hidden="true"></i> </div>
+                    <h2 class="ssb-title">Audio</h2>  
+                </a>
+            </div>
+        </div>
+    </div>
+
+<style>
+    a:hover, a:focus {
+        color: #2a6496;
+        text-decoration: none;
+    }
+    .square-service-block{
+        position:relative;
+        overflow:hidden;
+        margin:15px auto;
+    }
+    .square-service-block a {
+        background-color: #e74c3c;
+        border-radius: 5px;
+        display: block;
+        padding: 60px 20px;
+        text-align: center;
+        width: 100%;
+    }
+    .square-service-block a:hover{
+        background-color: rgba(231, 76, 60, 0.8);
+        border-radius: 5px;
+    }
+
+    .ssb-icon {
+        color: #fff;
+        display: inline-block;
+        font-size: 28px;
+        margin: 0 0 20px;
+    }
+
+    h2.ssb-title {
+        color: #fff;
+        font-size: 20px;
+        font-weight: 200;
+        margin:0;
+        padding:0;
+        text-transform: uppercase;
+    }
+</style>

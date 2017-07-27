@@ -19,5 +19,7 @@ namespace Polyurethane.Data.Entities
         public int YearStart { get; set; }
         [Required]
         public int YearEnd { get; set; }
+
+        public virtual ICollection<DetailEntity> Details { get; set; } = new HashSet<DetailEntity>();
     }
 }

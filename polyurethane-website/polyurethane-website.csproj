@@ -96,6 +96,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\Admin\login.css" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="css\font-awesome.min.css" />
     <Content Include="css\style.css" />
@@ -109,11 +110,16 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Products\AdminController.cs" />
+    <Compile Include="Controllers\Products\ManageProductsController.cs" />
     <Compile Include="Controllers\Products\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Mappers\DetailMapper.cs" />
+    <Compile Include="Models\DetailModel.cs" />
+    <Compile Include="Models\ImageModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -127,8 +133,12 @@
     <Content Include="Views\Home\DeliveryDetails.cshtml" />
     <Content Include="Views\Home\Order.cshtml" />
     <Content Include="Views\Home\Basket.cshtml" />
-    <Content Include="Views\Products\CreateNewCar.cshtml" />
+    <Content Include="Views\ManageProducts\CreateNewCar.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\ManageProducts\CreateNewDetail.cshtml" />
+    <Content Include="Views\Products\Detail.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Admin\AdminHome.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -140,7 +150,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="fonts\" />
     <Folder Include="img\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Polyurethane.Data\Polyurethane.Data.csproj">
