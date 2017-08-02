@@ -37,5 +37,9 @@ namespace polyurethane_website.Controllers
         {
             return View();
         }
+
+        public ActionResult AboutUs() {
+            return View();
+        }
     }
 }
