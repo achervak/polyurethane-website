@@ -4,5 +4,289 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Catalog</h2>
+
+
+<style>
+    select[multiple],
+    select.form-control[multiple] {
+        background: none;
+    }
+    .radio label,
+    .radio-inline label,
+    .checkbox label,
+    .checkbox-inline label {
+        padding-left: 25px;
+    }
+    .radio input[type="radio"],
+    .radio-inline input[type="radio"],
+    .checkbox input[type="radio"],
+    .checkbox-inline input[type="radio"],
+    .radio input[type="checkbox"],
+    .radio-inline input[type="checkbox"],
+    .checkbox input[type="checkbox"],
+    .checkbox-inline input[type="checkbox"] {
+        margin-left: -25px;
+    }
+    input[type="radio"],
+    .radio input[type="radio"],
+    .radio-inline input[type="radio"] {
+        position: relative;
+        margin-top: 6px;
+        margin-right: 4px;
+        vertical-align: top;
+        border: none;
+        background-color: transparent;
+        -webkit-appearance: none;
+        appearance: none;
+        cursor: pointer;
+    }
+    input[type="radio"]:focus,
+    .radio input[type="radio"]:focus,
+    .radio-inline input[type="radio"]:focus {
+        outline: none;
+    }
+    input[type="radio"]:before,
+    .radio input[type="radio"]:before,
+    .radio-inline input[type="radio"]:before,
+    input[type="radio"]:after,
+    .radio input[type="radio"]:after,
+    .radio-inline input[type="radio"]:after {
+        content: "";
+        display: block;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        -webkit-transition: 240ms;
+        -o-transition: 240ms;
+        transition: 240ms;
+    }
+    input[type="radio"]:before,
+    .radio input[type="radio"]:before,
+    .radio-inline input[type="radio"]:before {
+        position: absolute;
+        left: 0;
+        top: -3px;
+        background-color: #2196f3;
+        -webkit-transform: scale(0);
+        -ms-transform: scale(0);
+        -o-transform: scale(0);
+        transform: scale(0);
+    }
+    input[type="radio"]:after,
+    .radio input[type="radio"]:after,
+    .radio-inline input[type="radio"]:after {
+        position: relative;
+        top: -3px;
+        border: 2px solid #666666;
+    }
+    input[type="radio"]:checked:before,
+    .radio input[type="radio"]:checked:before,
+    .radio-inline input[type="radio"]:checked:before {
+        -webkit-transform: scale(0.5);
+        -ms-transform: scale(0.5);
+        -o-transform: scale(0.5);
+        transform: scale(0.5);
+    }
+    input[type="radio"]:disabled:checked:before,
+    .radio input[type="radio"]:disabled:checked:before,
+    .radio-inline input[type="radio"]:disabled:checked:before {
+        background-color: #bbbbbb;
+    }
+    input[type="radio"]:checked:after,
+    .radio input[type="radio"]:checked:after,
+    .radio-inline input[type="radio"]:checked:after {
+        border-color: #2196f3;
+    }
+    input[type="radio"]:disabled:after,
+    .radio input[type="radio"]:disabled:after,
+    .radio-inline input[type="radio"]:disabled:after,
+    input[type="radio"]:disabled:checked:after,
+    .radio input[type="radio"]:disabled:checked:after,
+    .radio-inline input[type="radio"]:disabled:checked:after {
+        border-color: #bbbbbb;
+    }
+    input[type="checkbox"],
+    .checkbox input[type="checkbox"],
+    .checkbox-inline input[type="checkbox"] {
+        position: relative;
+        border: none;
+        margin-bottom: -4px;
+        -webkit-appearance: none;
+        appearance: none;
+        cursor: pointer;
+    }
+    input[type="checkbox"]:focus,
+    .checkbox input[type="checkbox"]:focus,
+    .checkbox-inline input[type="checkbox"]:focus {
+        outline: none;
+    }
+    input[type="checkbox"]:focus:after,
+    .checkbox input[type="checkbox"]:focus:after,
+    .checkbox-inline input[type="checkbox"]:focus:after {
+        border-color: #2196f3;
+    }
+    input[type="checkbox"]:after,
+    .checkbox input[type="checkbox"]:after,
+    .checkbox-inline input[type="checkbox"]:after {
+        content: "";
+        display: block;
+        width: 18px;
+        height: 18px;
+        margin-top: -2px;
+        margin-right: 5px;
+        border: 2px solid #666666;
+        border-radius: 2px;
+        -webkit-transition: 240ms;
+        -o-transition: 240ms;
+        transition: 240ms;
+    }
+    input[type="checkbox"]:checked:before,
+    .checkbox input[type="checkbox"]:checked:before,
+    .checkbox-inline input[type="checkbox"]:checked:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 6px;
+        display: table;
+        width: 6px;
+        height: 12px;
+        border: 2px solid #fff;
+        border-top-width: 0;
+        border-left-width: 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    input[type="checkbox"]:checked:after,
+    .checkbox input[type="checkbox"]:checked:after,
+    .checkbox-inline input[type="checkbox"]:checked:after {
+        background-color: #2196f3;
+        border-color: #2196f3;
+    }
+    input[type="checkbox"]:disabled:after,
+    .checkbox input[type="checkbox"]:disabled:after,
+    .checkbox-inline input[type="checkbox"]:disabled:after {
+        border-color: #bbbbbb;
+    }
+    input[type="checkbox"]:disabled:checked:after,
+    .checkbox input[type="checkbox"]:disabled:checked:after,
+    .checkbox-inline input[type="checkbox"]:disabled:checked:after {
+        background-color: #bbbbbb;
+        border-color: transparent;
+    }
+
+     .checkbox {
+         position: relative;
+         display: block;
+         margin-top: 10px;
+         margin-bottom: 10px;
+     }
+    .radio label,
+    .checkbox label {
+        min-height: 23px;
+        padding-left: 20px;
+        margin-bottom: 0;
+        font-weight: normal;
+        cursor: pointer;
+    }
+    .radio input[type="radio"],
+    .radio-inline input[type="radio"],
+    .checkbox input[type="checkbox"],
+    .checkbox-inline input[type="checkbox"] {
+        position: absolute;
+        margin-left: -20px;
+        margin-top: 4px \9;
+    }
+    .radio + .radio,
+    .checkbox + .checkbox {
+        margin-top: -5px;
+    }
+    .radio-inline,
+    .checkbox-inline {
+        position: relative;
+        display: inline-block;
+        padding-left: 20px;
+        margin-bottom: 0;
+        vertical-align: middle;
+        font-weight: normal;
+        cursor: pointer;
+    }
+    .radio-inline + .radio-inline,
+    .checkbox-inline + .checkbox-inline {
+        margin-top: 0;
+        margin-left: 10px;
+    }
+    input[type="radio"][disabled],
+    input[type="checkbox"][disabled],
+    input[type="radio"].disabled,
+    input[type="checkbox"].disabled,
+    fieldset[disabled] input[type="radio"],
+    fieldset[disabled] input[type="checkbox"] {
+        cursor: not-allowed;
+    }
+    .radio-inline.disabled,
+    .checkbox-inline.disabled,
+    fieldset[disabled] .radio-inline,
+    fieldset[disabled] .checkbox-inline {
+        cursor: not-allowed;
+    }
+    .radio.disabled label,
+    .checkbox.disabled label,
+    fieldset[disabled] .radio label,
+    fieldset[disabled] .checkbox label {
+        cursor: not-allowed;
+    }
+</style>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <h4>Фільтри</h4>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    
+                </li>
+                <li class="list-group-item">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Line
+                        </label>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Line
+                        </label>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-10">
+            <div id="product-list" style="text-align: center; min-height: 400px">
+                <img src="/img/preloader-circle-64-blue.gif">
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<script>
+    function RefreshProducts()
+    {
+        $.ajax({
+            url: '/products/list/',
+            type: 'POST',
+            data: JSON.stringify({ DetailName: '', DetailDescription: '' }),
+            contentType: 'application/json; charset=utf-8',
+            success: function (content) {
+                $('#product-list').html(content);
+            }
+        });
+    }
+
+    $(RefreshProducts);
+</script>
 

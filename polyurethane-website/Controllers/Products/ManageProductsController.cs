@@ -74,7 +74,7 @@ namespace polyurethane_website.Controllers.Products
                 new DetailParamModel() { Key = "color", Value = "Blue", IsFilter = true}
             });
 
-            return Redirect($"/management/detail/show/{detail.Id}");
+            return Redirect($"/products/view/{detail.Id}");
         }
 
         [HttpGet]

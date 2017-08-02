@@ -145,6 +145,7 @@
     <Content Include="img\delivery\pay.png" />
     <Content Include="img\delivery\samovivoz-e0433d15.jpg" />
     <Content Include="img\desktop-large.jpg" />
+    <Content Include="img\empty-image.png" />
     <Content Include="img\Energy-Suspension-Polyurethane-Install-640x309.jpg" />
     <Content Include="img\Energy-Suspension-Polyurethane-Master-Bushing-Kit1.jpg" />
     <Content Include="img\golf-mk5.jpg" />
@@ -155,6 +156,7 @@
     <Content Include="img\polyurethane\durability.jpg" />
     <Content Include="img\polyurethane\economy2-1-1024x659.jpg" />
     <Content Include="img\polyurethane\Polyurethane.jpg" />
+    <Content Include="img\preloader-circle-64-blue.gif" />
     <Content Include="img\saylentblok-3022.jpg" />
     <Content Include="img\silent-image.png" />
     <Content Include="img\Suspension Bushings 2.png" />
@@ -176,13 +178,19 @@
     </Compile>
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Mappers\DetailMapper.cs" />
+    <Compile Include="Models\CatalogModel.cs" />
     <Compile Include="Models\DetailModel.cs" />
+    <Compile Include="Models\FilterProductsModel.cs" />
     <Compile Include="Models\ImageModel.cs" />
+    <Compile Include="Models\DetailViewModel.cs" />
+    <Compile Include="Models\SearchProducts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <Content Include="packages.config" />
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Shared\_Layout - Copy.cshtml" />
@@ -200,6 +208,8 @@
     <Content Include="Views\Home\AboutUs.cshtml" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <Content Include="Views\Products\Main.cshtml" />
+    <Content Include="Views\Products\GetProductList.cshtml" />
+    <Content Include="Views\Products\SearchProducts.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
