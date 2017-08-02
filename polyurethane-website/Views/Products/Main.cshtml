@@ -1,0 +1,267 @@
+﻿
+@{
+    ViewBag.Title = "Main";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+		<!--Корзина-->
+<div class="basket">
+    <a href="#" class="cart-button" style="display: none;">
+        <span class="cart-button-quantity"></span>
+        <span class="cart-button-label"></span>
+        <!-- Опционально, вместо span элементов можно поместить сюда картинку для кнопки. -->
+    </a>
+</div>
+<!--Goods-->
+<section id="catalog_goods">
+    <div class="container-fluid">
+        <div class="col-xs-4 col-md-2">
+            <div id="accordion" class="panel panel-primary behclick-panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Search Filter Car</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="panel-heading ">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapse0">
+                                <i class="indicator fa fa-caret-down" aria-hidden="true"></i> Price
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse0" class="panel-collapse collapse in">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        0 - 1000$
+                                    </label>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        1000$ - 2000$
+                                    </label>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        2000$ - 6000$
+                                    </label>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        More Than 6000$
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="panel-heading ">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapse1">
+                                <i class="indicator fa fa-caret-down" aria-hidden="true"></i> Brand
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapse1" class="panel-collapse collapse in">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        citroen
+                                    </label>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        benz
+                                    </label>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        bmw
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapse3"><i class="indicator fa fa-caret-down" aria-hidden="true"></i> Color</a>
+                        </h4>
+                    </div>
+                    <div id="collapse3" class="panel-collapse collapse in">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        red
+                                    </label>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        blue
+                                    </label>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        green
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#collapse2"><i class="indicator fa fa-caret-right" aria-hidden="true"></i> Collapsible list group</a>
+                        </h4>
+                    </div>
+                    <div id="collapse2" class="panel-collapse collapse">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        7
+                                    </label>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        8
+                                    </label>
+                                </div>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="checkbox">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        9
+                                    </label>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2></h2>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+                                <img src="/img/2.jpg" alt="">
+                                <div class="caption">
+                                    <h4>Versace Bright Crystal Limited</h4>
+                                    <p>Поистине чувственный, выразительный, изысканный, чарующий чарующий<a href="#" class="btn btn-primary btn-sm btn-block cart-buy-button" data-name="versace bright crystal limited edition" data-price="390" data-quantity="1">Купити в один клік</a></p>
+                                </div>
+                                <div class="ratings">
+                                    <p class="pull-right">618 переглядів</p>
+                                    <p>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+                                <img src="/img/2.jpg" alt="">
+                                <div class="caption">
+                                    <h4 class="button_price pull-right">390 грн</h4>
+                                    <h4>Versace Bright Crystal Limited</h4>
+                                    <p>
+                                        Поистине чувственный, выразительный, изысканный, чарующий чарующий<br>
+                                        <a href="product-details.html" class="btn btn-primary btn-sm btn cart-buy-button">Купити</a>
+                                    </p>
+                                    <p><a href="#" class="btn btn-primary btn-sm btn cart-buy-button" data-name="versace bright crystal limited edition" data-price="390" data-quantity="1">Купити</a></p>
+                                </div>
+                                <div class="ratings">
+                                    <p class="pull-right">618 переглядів</p>
+                                    <p>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+                                <img src="/img/2.jpg" alt="">
+                                <div class="caption">
+                                    <h4 class="button_price pull-right">390 грн</h4>
+                                    <h4>Versace Bright Crystal Limited</h4>
+                                    <p>Поистине чувственный, выразительный, изысканный, чарующий чарующий<a href="#" class="btn btn-primary btn-sm btn-block cart-buy-button" data-name="versace bright crystal limited edition" data-price="390" data-quantity="1">Купити</a></p>
+                                </div>
+                                <div class="ratings">
+                                    <p class="pull-right">618 переглядів</p>
+                                    <p>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="thumbnail">
+                                <img src="/img/2.jpg" alt="">
+                                <div class="caption">
+                                    <h4 class="button_price pull-right"><b>390 грн</b></h4>
+                                    <h4>Versace Bright Crystal Limited</h4>
+                                    <p>Країна: Україна<br>Об'єм: 100 ml<br>Запах: Солодкий<a href="#" class="btn btn-primary btn-sm btn-block cart-buy-button" data-name="versace bright crystal limited edition" data-price="390" data-quantity="1">Купити</a></p>
+                                </div>
+                                <div class="ratings">
+                                    <p class="pull-right">618 переглядів</p>
+                                    <p>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star-empty"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+

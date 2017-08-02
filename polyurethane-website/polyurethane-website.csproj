@@ -101,6 +101,8 @@
     <Content Include="css\font-awesome.min.css" />
     <Content Include="css\style.css" />
     <Content Include="Global.asax" />
+    <Content Include="img\3.jpg" />
+    <Content Include="img\4.jpg" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
     <Content Include="js\npm.js" />
@@ -139,6 +141,8 @@
     <Content Include="Views\Products\Detail.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Admin\AdminHome.cshtml" />
+    <Content Include="Views\Home\AboutUs.cshtml" />
+    <Content Include="Views\Products\Main.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -149,7 +153,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="fonts\" />
-    <Folder Include="img\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Polyurethane.Data\Polyurethane.Data.csproj">
