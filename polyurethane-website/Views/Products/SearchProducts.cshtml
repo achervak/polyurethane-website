@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "SearchProducts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model polyurethane_website.Models.SearchProducts
+
+<h2>SearchProducts: @Model.Filter</h2>
+
+<div class="container">
+    <div id="search-result" style="text-align: center; min-height: 400px">
+        <img src="/img/preloader-circle-64-blue.gif">
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $.ajax({
+            url: '/products/list/',
+            type: 'POST',
+            data: JSON.stringify({  DetailName: '@Model.Filter', DetailDescription: '@Model.Filter' }),
+            contentType: 'application/json; charset=utf-8',
+            success: function (content) {
+                $('#search-result').html(content);
+            }
+        });
+    });
+</script>
+

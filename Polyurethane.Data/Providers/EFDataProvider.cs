@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Polyurethane.Data.DbContext;
 using Polyurethane.Data.Entities;
@@ -104,7 +105,9 @@ namespace Polyurethane.Data.Providers
             using (var db = new PolyurethaneContext(_connectionString))
             {
                 db.Images.Add(image);
-                await db.SaveChangesAsync();
+                await db.SaveChangesAsync()
+                    .ConfigureAwait(continueOnCapturedContext: false);
+
                 return image;
             }
         }
@@ -113,22 +116,40 @@ namespace Polyurethane.Data.Providers
         {
             using (var db = new PolyurethaneContext(_connectionString))
             {
-                var dbDetail = await db.Details.FirstOrDefaultAsync(x => x.Id == detail.Id);
+                var dbDetail = await db.Details
+                    .FirstOrDefaultAsync(x => x.Id == detail.Id)
+                    .ConfigureAwait(continueOnCapturedContext: false);
+
                 if (dbDetail == null)
                     return null;
 
                 dbDetail.Images.Add(image);
-                await db.SaveChangesAsync();
+                await db.SaveChangesAsync()
+                    .ConfigureAwait(continueOnCapturedContext: false);
+
                 return image;
             }
         }
 
-        public async Task<IEnumerable<DetailEntity>> GetDetails(Func<DetailEntity> filter, int count)
+        public async Task<int> GetDetailsCount(Expression<Func<DetailEntity, bool>> filter)
         {
-            throw new NotImplementedException();
-            
+            using (var db = new PolyurethaneContext(_connectionString))
+            {
+                return await db.Details./*Where(filter).*/CountAsync()
+                    .ConfigureAwait(continueOnCapturedContext: false);
+            }
         }
 
-        
+        public async Task<IEnumerable<DetailEntity>> GetDetails(Expression<Func<DetailEntity, bool>> filter, int pageSize, int pageNumber)
+        {
+            using (var db = new PolyurethaneContext(_connectionString))
+            {
+                return await db.Details.Include(x => x.Images)
+                    .Include("Params.Group")
+                    .Where(filter)
+                    .ToListAsync()
+                    .ConfigureAwait(continueOnCapturedContext: false);
+            }
+        }
     }
 }

@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "GetProductList";
+    Layout = null;
+}
+
+@model polyurethane_website.Models.DetailViewModel
+
+<div class="row">
+    @foreach (var detail in Model.Details)
+    {
+        <div class="col-md-3" id="@detail.Guid">
+            <div style="text-align: center;">
+                <img src="@detail.MainImage.Url" title="@detail.MainImage.Name" style="max-width: 150px;">
+            </div>
+            <p>
+                <a href="/products/view/@detail.Guid">@detail.Name</a>
+            </p>
+            <div>
+                @detail.Description
+            </div>
+            <div>
+                <a class="btn btn-sm btn-success">Купити</a>
+                <a class="btn btn-sm btn-default">Переглянути</a>
+            </div>
+        </div>
+    }
+</div>
+
+
+<div class="row" style="margin-top: 100px">
+    <div class="col-md-12">
+        <ul class="pagination pagination-sm">
+            <li class="disabled"><a href="#">&laquo;</a></li>
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+            <li><a href="#">&raquo;</a></li>
+        </ul>
+    </div>
+</div>

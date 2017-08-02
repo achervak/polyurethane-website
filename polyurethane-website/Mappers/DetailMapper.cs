@@ -14,6 +14,7 @@ namespace polyurethane_website.Mappers
         {
             var detail = new DetailModel()
             {
+                Guid = entity.Id,
                 Name = entity.Name,
                 Description = entity.Description,
                 ShortDescription = entity.ShortDescription,
@@ -28,6 +29,12 @@ namespace polyurethane_website.Mappers
                     IsFilter = x.Group.IsFilter,
                     Value = x.Value
                 }).ToList()
+            };
+            //-- set main image
+            detail.MainImage = detail.Images.FirstOrDefault() ?? new ImageModel()
+            {
+                Name = detail.Name,
+                Url = "/img/empty-image.png"
             };
 
             return detail;
