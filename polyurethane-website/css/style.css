@@ -49,9 +49,9 @@ a:hover {
     color: white;
 }
 
-    .advantages li {
-        text-align: left;
-    }
+.advantages li {
+    text-align: left;
+}
 
 .abot_polyurethane {
     margin-top: 30px;
@@ -64,7 +64,7 @@ a:hover {
 }
 
 .safety {
-    background-image: url("/img/4.jpg") 
+    background-image: url("/img/4.jpg");
     color: #000000;
 }
 
