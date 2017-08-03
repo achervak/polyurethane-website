@@ -76,3 +76,7 @@ C:\Users\User\Documents\polyurethane-website\polyurethane-website\bin\ru\System.
 C:\Users\User\Documents\polyurethane-website\polyurethane-website\obj\Debug\polyurethane-website.csprojResolveAssemblyReference.cache
 C:\Users\User\Documents\polyurethane-website\polyurethane-website\obj\Debug\polyurethane-website.dll
 C:\Users\User\Documents\polyurethane-website\polyurethane-website\obj\Debug\polyurethane-website.pdb
+C:\Users\User\Documents\polyurethane-website\polyurethane-website\bin\System.Data.Common.dll
+C:\Users\User\Documents\polyurethane-website\polyurethane-website\bin\System.Data.SqlClient.dll
+C:\Users\User\Documents\polyurethane-website\polyurethane-website\bin\EntityFramework.SqlServer.dll
+C:\Users\User\Documents\polyurethane-website\polyurethane-website\bin\EntityFramework.SqlServer.xml

@@ -102,10 +102,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="css\about_us.css" />
     <Content Include="css\Admin\login.css" />
+    <Content Include="css\bootstrap-responsive.min.css" />
     <Content Include="css\bootstrap.min.css" />
+    <Content Include="css\custom.css" />
     <Content Include="css\font-awesome.min.css" />
     <Content Include="css\style.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="img\002.jpg" />
     <Content Include="img\1005tr-14-hp+1973-chevy-c10-buildup+assembled-upper-control-arm.jpg" />
@@ -131,6 +136,9 @@
     <Content Include="img\carusel\4204457-cool-black-cars-wallpapers.jpg" />
     <Content Include="img\carusel\a93386b8644e4887db1c34ca59bac83c.png" />
     <Content Include="img\carusel\aston-martin-wallpaper-1.jpg" />
+    <Content Include="img\carusel\slider_1.jpg" />
+    <Content Include="img\carusel\slider_2.jpg" />
+    <Content Include="img\carusel\slider_3.jpg" />
     <Content Include="img\corvette-bushings.jpg" />
     <Content Include="img\delivery\7.png" />
     <Content Include="img\delivery\autolux.jpg" />
@@ -163,7 +171,13 @@
     <Content Include="img\Замена-сайлентблоков-БМВ-Е30.jpg" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
+    <Content Include="js\index.js" />
+    <Content Include="js\jquery-3.2.1.min.js" />
+    <Content Include="js\jquery.js" />
+    <Content Include="js\jquery.min.js" />
     <Content Include="js\npm.js" />
+    <Content Include="js\sale.js" />
+    <Content Include="js\script.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -206,6 +220,15 @@
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Admin\AdminHome.cshtml" />
     <Content Include="Views\Home\AboutUs.cshtml" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <Content Include="Views\Products\Main.cshtml" />
     <Content Include="Views\Products\GetProductList.cshtml" />
@@ -219,7 +242,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="fonts\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Polyurethane.Data\Polyurethane.Data.csproj">
@@ -238,7 +260,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>51069</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
