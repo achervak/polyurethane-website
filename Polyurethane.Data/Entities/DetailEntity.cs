@@ -13,6 +13,8 @@ namespace Polyurethane.Data.Entities
         public string ShortDescription { get; set; }
         [Required]
         public string Description { get; set; }
+        [Required]
+        public double Price { get; set; }
 
         public virtual ICollection<ImageEntity> Images { get; set; } = new HashSet<ImageEntity>();
         public virtual ICollection<CarEntity> Cars { get; set; } = new HashSet<CarEntity>();

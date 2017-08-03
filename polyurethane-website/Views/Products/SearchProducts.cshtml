@@ -15,16 +15,6 @@
 </div>
 
 <script>
-    $(function () {
-        $.ajax({
-            url: '/products/list/',
-            type: 'POST',
-            data: JSON.stringify({  DetailName: '@Model.Filter', DetailDescription: '@Model.Filter' }),
-            contentType: 'application/json; charset=utf-8',
-            success: function (content) {
-                $('#search-result').html(content);
-            }
-        });
-    });
+    $('#search-result').load('/products/search/list?filter=@Model.Filter');
 </script>
 
