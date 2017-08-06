@@ -171,8 +171,10 @@
     <Content Include="img\Замена-сайлентблоков-БМВ-Е30.jpg" />
     <Content Include="js\bootstrap.js" />
     <Content Include="js\bootstrap.min.js" />
-    <Content Include="js\index.js" />
     <Content Include="js\jquery-3.2.1.min.js" />
+    <Content Include="js\jquery-ui.js" />
+    <Content Include="js\index.js" />
+    
     <Content Include="js\jquery.js" />
     <Content Include="js\jquery.min.js" />
     <Content Include="js\npm.js" />
@@ -198,6 +200,7 @@
     <Compile Include="Models\ImageModel.cs" />
     <Compile Include="Models\DetailViewModel.cs" />
     <Compile Include="Models\SearchProducts.cs" />
+    <Compile Include="Models\UpdateDetailModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

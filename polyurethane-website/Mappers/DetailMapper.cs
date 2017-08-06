@@ -16,6 +16,7 @@ namespace polyurethane_website.Mappers
             {
                 Guid = entity.Id,
                 Name = entity.Name,
+                Price = entity.Price,
                 Description = entity.Description,
                 ShortDescription = entity.ShortDescription,
                 Images = entity.Images.Select(x => new ImageModel()

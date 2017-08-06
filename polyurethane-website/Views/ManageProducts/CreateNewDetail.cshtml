@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "CreateNewDetail";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
@@ -12,36 +11,154 @@
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Назва</label>
                     <div class="col-lg-4">
-                        <input type="text" class="form-control" name="name" placeholder="">
+                        <input type="text" class="form-control" id="detail-name" placeholder="">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Короткий опис</label>
                     <div class="col-lg-4">
-                        <input type="text" class="form-control" name="shortDescription" placeholder="">
+                        <input type="text" class="form-control" id="short-description" placeholder="">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Зображення</label>
                     <div class="col-lg-4">
-                        <input type="file" class="form-control" name="images" multiple>
+                        <input type="file" class="form-control" id="images" multiple>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Ціна</label>
+                    <div class="col-lg-4">
+                        <input type="text" class="form-control" id="price" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">Параметри</label>
+                    <div id="params-container" class="col-md-4">
+                        <div name="param-line" class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="name" multiple>
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="value" multiple>
+                            </div>        
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10 col-md-offset-2">
+                        <a class="btn btn-sm btn-success" onclick="AddMoreParams()">Додати ще</a>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-lg-2 control-label">Довгий опис</label>
                     <div class="col-lg-4">
-                        <textarea class="form-control" rows="3" name="description"></textarea>
+                        <textarea class="form-control" rows="3" id="description"></textarea>
                         <span class="help-block"></span>
                     </div>
                 </div>
             </fieldset>
             <div class="form-group">
                 <div class="col-lg-10 col-lg-offset-2">
-                    <button type="reset" class="btn btn-default">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <a class="btn btn-default">Відмінити</a>
+                    <a class="btn btn-primary" onclick="UpdateProduct()">Ок</a>
                 </div>
             </div>
         </form>
     </div>
 </div>
+
+<script>
+    function UpdateProduct() {
+        var product = {
+            DetailName: $('#detail-name').val(),
+            ShortDescription: $('#short-description').val(),
+            Description: $('#description').val(),
+            Price: $('#price').val(),
+            Params: []
+        };
+        debugger;
+        $('[name="param-line"]').each(function(index, item) {
+            var name = $(item).find('[name="name"]').val();
+            var value = $(item).find('[name="value"]').val();
+
+            if (name != '' && name != '') {
+                product.Params.push({
+                    Key: name,
+                    Value: value
+                });
+            }
+        });
+
+
+        //params-container
+        //short-description
+        //images
+        //description
+
+
+
+        $.ajax({
+            url: '/management/detail/create/',
+            type: 'POST',
+            data: JSON.stringify(product),
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                //-- load images
+                uploadImage(data.Id, $('#images')[0].files);
+                window.location = "/products/view/" + data.Id;
+            },
+            complete: function () {  }
+        });
+    }
+
+    function uploadImage(detailGuid, files) {
+        var formData = new FormData();
+        
+        for( var i = 0; i < files.length; i++) {
+            formData.append("photo", files[i]);
+        }
+
+        $.ajax({
+            url: '/management/detail/' + detailGuid+ '/add-image/',
+            type: 'POST',
+            data: formData, 
+            async: false,
+            contentType: false,
+            processData: false 
+        }).done(function () {
+
+        }).fail(function () {
+            console.log("An error occurred, the files couldn't be sent!");
+        });
+    }
+
+
+    var availableGroups = [];
+
+    function AddMoreParams() {
+        
+        var paramLine = $($('[name="param-line"]')[0]).clone();
+        paramLine.find('input').val('');
+        $('#params-container').append(paramLine);
+        AssignParams();
+    }
+
+    $(function() {
+        $.get("/param/groups",
+            function(data) {
+                $.each(data,
+                    function(index, item) {
+                        availableGroups.push(item.Name);
+                    });
+                AssignParams();
+            });
+    });
+
+    function AssignParams() {
+        $('[name="name"]').autocomplete({
+            source: availableGroups
+        });
+    }
+</script>
 

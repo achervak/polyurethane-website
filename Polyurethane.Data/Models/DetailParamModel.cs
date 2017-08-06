@@ -8,8 +8,8 @@ namespace Polyurethane.Data.Models
 {
     public class DetailParamModel
     {
-        public string Key;
-        public string Value;
-        public bool IsFilter;
+        public string Key { get; set; }
+        public string Value { get; set; }
+        public bool IsFilter { get; set; }
     }
 }

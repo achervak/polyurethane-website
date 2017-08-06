@@ -50,6 +50,17 @@ namespace Polyurethane.Data.Providers
             }
         }
 
+        public async Task<List<ParamGroupEntity>> GetParamGroups(string filter)
+        {
+            using (var db = new PolyurethaneContext(_connectionString))
+            {
+                if(string.IsNullOrEmpty(filter))
+                    return await db.ParamGroup.ToListAsync();
+
+                return await db.ParamGroup.Where(x => x.Name.Contains(filter)).ToListAsync();
+            }
+        }
+
         public async Task<DetailEntity> UpdateDetail(DetailEntity detail)
         {
             using (var db = new PolyurethaneContext(_connectionString))

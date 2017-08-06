@@ -9,15 +9,14 @@
 <div class="container">
     <div class="row" style="padding-top: 80px">
         <div class="col-md-5">
-            <img src="@Model.Images.FirstOrDefault().Url" class="img-polaroid" alt="Sample Image" style="width: 320px;height: 300px;">
+            <img src="@Model.MainImage.Url" class="img-polaroid" alt="Sample Image" style="width: 320px;height: 300px;">
         </div>
         <div class="col-md-7">
             <h2>@Model.Name</h2>
             <h4 class="muted">@Model.ShortDescription</h4>
             <p>@Model.Description</p>
             <hr>
-            @*<h3>Price - <del class="text-error">$699</del> $499</h3>
-            <p class="muted">Inclusive of all taxes. Free home delivery.</p>*@
+            <h3>Ціна - @Model.Price грн</h3>
             <br>
             <p>
                 <a href="#" class="btn btn-success btn-large">Додати в корзину</a>

@@ -20,6 +20,8 @@ namespace Polyurethane.Data.Interfaces
         Task<int> GetDetailsCount(Expression<Func<DetailEntity, bool>> filter);
         Task<IEnumerable<DetailEntity>> GetDetails(Expression<Func<DetailEntity, bool>> filter, int pageSize, int pageNumber);
         Task<DetailEntity> GetDetail(Guid guid);
+
+        Task<List<ParamGroupEntity>> GetParamGroups(string filter);
         //Task<DetailEntity> GetDetails(Expression<Func<DetailEntity, bool>> filter);
 
 
