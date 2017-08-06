@@ -44,6 +44,13 @@ namespace polyurethane_website.Controllers.Products
             var model = new DetailMapper().Map(dbDetail);
             return View("Detail",model);
         }
+        
+        [Route("param/groups")]
+        public async Task<ActionResult> GetParamGroups(string filter)
+        {
+            var groups = await _dataProvider.GetParamGroups(filter);
+            return Json(groups.Select(x => new { Name = x.Name, IsFilter = x.IsFilter }), JsonRequestBehavior.AllowGet);
+        }
 
         //[HttpPost]
         [Route("products/list/")]
@@ -51,21 +58,46 @@ namespace polyurethane_website.Controllers.Products
         {
             Expression<Func<DetailEntity, bool>> filter = (detail) =>
                 filters.DetailName == null || detail.Name.Contains(filters.DetailName)
-                && filters.DetailDescription == null || detail.Description.Contains(filters.DetailDescription);// ||
-                                                                                                     //filters.CarMake != null && detail.Cars.FirstOrDefault();
+                && filters.DetailDescription == null || detail.Description.Contains(filters.DetailDescription);
 
-            var model = new DetailViewModel();
-
-            model.TotalFilteredCount = await _dataProvider.GetDetailsCount(filter);
+            var model = new DetailViewModel
+            {
+                TotalFilteredCount = await _dataProvider.GetDetailsCount(filter)
+            };
 
             var dbDetails = await _dataProvider.GetDetails(filter, 20, 1);
             model.Details = dbDetails.Select(x => new DetailMapper().Map(x));
 
             return View(model);
         }
+        /// <summary>
+        /// Search details by some string
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
+        [Route("products/search/list")]
+        public async Task<ActionResult> GetSearchProductList(string filter)
+        {
+            Expression<Func<DetailEntity, bool>> filterAction = (detail) =>
+                detail.Name.Contains(filter) ||
+                detail.Description.Contains(filter);
 
+            var model = new DetailViewModel();
+            model.TotalFilteredCount = await _dataProvider.GetDetailsCount(filterAction);
+
+            var dbDetails = await _dataProvider.GetDetails(filterAction, 20, 1);
+            model.Details = dbDetails.Select(x => new DetailMapper().Map(x));
+
+            return View("GetProductList", model);
+        }
+
+        /// <summary>
+        /// Search detail by string container
+        /// </summary>
+        /// <param name="filter"></param>
+        /// <returns></returns>
         [Route("products/search")]
-        public async Task<ActionResult> SearchProducts(string filter)
+        public ViewResult SearchProducts(string filter)
         {
 
             var model = new SearchProducts()

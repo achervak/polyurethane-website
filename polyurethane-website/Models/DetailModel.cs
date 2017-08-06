@@ -10,6 +10,7 @@ namespace polyurethane_website.Models
     {
         public Guid Guid { get; set; }
         public string Name { get; set; }
+        public double Price { get; set; }
         public string ShortDescription { get; set; }
         public string Description { get; set; }
         public List<ImageModel> Images { get; set; }  = new List<ImageModel>();

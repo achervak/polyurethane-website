@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using polyurethane_website.Models;
 using Polyurethane.Data.Entities;
 using Polyurethane.Data.Interfaces;
 using Polyurethane.Data.Models;
@@ -26,28 +27,27 @@ namespace polyurethane_website.Controllers.Products
             return View();
         }
 
-        [HttpPost]
-        [Route("management/detail/create")]
-        public async Task<ActionResult> CreateNewDetail(DetailEntity detail)
-        {
-            detail = await _dataProvider.CreateDetail(detail);
-            var images = Request.Files;
-            if (detail.Id == Guid.Empty)
-                Redirect("management/detail/create");
 
-            //-- store detail images
-            if (images.Count > 0)
+        [HttpPost]
+        [Route("management/detail/{guid}/add-image/")]
+        public async Task AddDetailToImage(Guid guid)
+        {
+            var dbDetail = await _dataProvider.GetDetail(guid);
+            if (dbDetail == null)
+                throw new Exception("No detail were found");
+
+            if (Request.Files.Count > 0)
             {
-                var imageUrl = $"/images/details/{detail.Id}";
+                var imageUrl = $"/images/details/{guid}";
                 var imagesFolder = Server.MapPath(imageUrl);
                 if (!Directory.Exists(imagesFolder))
                     Directory.CreateDirectory(imagesFolder);
 
-                for ( var i = 0; i < images.Count; i++)
+                for (var i = 0; i < Request.Files.Count; i++)
                 {
                     try
                     {
-                        var image = images[i];
+                        var image = Request.Files[i];
                         var imageGuid = Guid.NewGuid();
                         //--create image object
                         var dbImage = new ImageEntity()
@@ -58,23 +58,43 @@ namespace polyurethane_website.Controllers.Products
 
                         image.SaveAs($"{imagesFolder}/{imageGuid}{Path.GetExtension(image.FileName)}");
                         //-- link image to datail
-                        await _dataProvider.AddImageToDetail(detail, dbImage);
+                        await _dataProvider.AddImageToDetail(dbDetail, dbImage);
                     }
-                    catch(Exception e)
+                    catch (Exception e)
                     {
 
                     }
                 }
             }
-            
-            await _dataProvider.SetDetailParams(detail, new List<DetailParamModel>()
-            {
-                new DetailParamModel() { Key = "width", Value = "35", IsFilter = false},
-                new DetailParamModel() { Key = "height", Value = "20", IsFilter = false},
-                new DetailParamModel() { Key = "color", Value = "Blue", IsFilter = true}
-            });
 
-            return Redirect($"/products/view/{detail.Id}");
+            return;
+        }
+
+        [HttpPost]
+        [Route("management/detail/create")]
+        public async Task<ActionResult> CreateNewDetail(UpdateDetailModel detail)
+        {
+            var dbDetail = await _dataProvider.CreateDetail(new DetailEntity()
+            {
+                Name = detail.DetailName,
+                ShortDescription = detail.ShortDescription,
+                Description = detail.Description,
+                Price = detail.Price
+            });
+            
+            if (dbDetail.Id == Guid.Empty)
+                Redirect("management/detail/create");
+
+            await _dataProvider.SetDetailParams(dbDetail, detail.Params);
+
+            //await _dataProvider.SetDetailParams(dbDetail, new List<DetailParamModel>()
+            //{
+            //    new DetailParamModel() { Key = "width", Value = "35", IsFilter = false},
+            //    new DetailParamModel() { Key = "height", Value = "20", IsFilter = false},
+            //    new DetailParamModel() { Key = "color", Value = "Blue", IsFilter = true}
+            //});
+
+            return Json(new { Id = dbDetail.Id });
         }
 
         [HttpGet]
