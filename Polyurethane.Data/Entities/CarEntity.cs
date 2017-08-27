@@ -12,9 +12,14 @@ namespace Polyurethane.Data.Entities
     public class CarEntity : BaseEntity
     {
         [Required]
+        [MaxLength(50)]
         public string Make { get; set; }
         [Required]
+        [MaxLength(50)]
         public string Model { get; set; }
+        [Required]
+        [MaxLength(500)]
+        public string Description { get; set; }
         [Required]
         public int YearStart { get; set; }
         [Required]

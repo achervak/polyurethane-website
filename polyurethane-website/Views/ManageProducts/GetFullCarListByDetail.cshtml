@@ -1,0 +1,10 @@
+﻿@{
+    Layout = null;
+}
+
+@model IEnumerable<polyurethane_website.Models.SuitabilityCarResult>
+
+@foreach (var car in Model)
+{
+    <a class="list-group-item" ><label><input type="checkbox" carid="@car.Car.Guid" @(car.IsSuitable?"checked":"")> @car.Car.Make @car.Car.Model (@car.Car.StartYear-@car.Car.EndYear) <br> @car.Car.Description</label></a>
+}

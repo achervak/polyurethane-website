@@ -20,7 +20,7 @@
             <br>
             <p>
                 <a href="#" class="btn btn-success btn-large">Додати в корзину</a>
-                <a href="#" class="btn btn-success btn-large">Замовити</a>
+                <a href="/order/create/@Model.Guid" class="btn btn-success btn-large">Замовити</a>
             </p>
         </div>
     </div>
@@ -28,41 +28,39 @@
     <div class="row">
         <div class="col-md-12">
             <ul class="nav nav-tabs">
-                <li class="active"><a data-toggle="tab" href="#tab-1">Specification</a></li>
-                <li><a data-toggle="tab" href="#tab-2">Key Features</a></li>
+                <li class="active"><a data-toggle="tab" href="#tab-1">Підходить для автомобілів:</a></li>
+                <li><a data-toggle="tab" href="#tab-2">Характеристики</a></li>
             </ul>
             <div class="tab-content">
                 <div id="tab-1" class="tab-pane fade in active">
                     <table class="table table-striped">
                         <tbody>
+                        @foreach (var car in @Model.SuitableCars)
+                        {
+                            <tr>
+                                <td>@car.Make</td>
+                                <td>@car.Model</td>
+                                <td>@car.StartYear - @car.EndYear</td>
+                                <td>@car.Description</td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </div>
+                <div id="tab-2" class="tab-pane fade ">
+                    <table class="table table-striped">
+                        <tbody>
                         @foreach (var param in @Model.Params)
                         {
                             <tr>
-                                <th>@param.Key</th>
+                                <td>@param.Key</td>
                                 <td>@param.Value</td>
                             </tr>    
                         }
                         </tbody>
                     </table>
                 </div>
-                <div id="tab-2" class="tab-pane fade">
-                    <table class="table table-striped">
-                        <tbody>
-                            <tr>
-                                <td>Windows 8 OS</td>
-                            </tr>
-                            <tr>
-                                <td>Intel Dual Core Processor</td>
-                            </tr>
-                            <tr>
-                                <td>18.5 Inch LED Screen</td>
-                            </tr>
-                            <tr>
-                                <td>Integrated Graphics</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+                
             </div>
         </div>
     </div>

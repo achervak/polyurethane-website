@@ -174,7 +174,6 @@
     <Content Include="js\jquery-3.2.1.min.js" />
     <Content Include="js\jquery-ui.js" />
     <Content Include="js\index.js" />
-    
     <Content Include="js\jquery.js" />
     <Content Include="js\jquery.min.js" />
     <Content Include="js\npm.js" />
@@ -185,6 +184,8 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\Orders\OrdersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\Products\AdminController.cs" />
     <Compile Include="Controllers\Products\ManageProductsController.cs" />
@@ -192,14 +193,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\AutoMapperResolver.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Mappers\CarMapper.cs" />
     <Compile Include="Mappers\DetailMapper.cs" />
+    <Compile Include="Models\CarModel.cs" />
     <Compile Include="Models\CatalogModel.cs" />
+    <Compile Include="Models\CreateOrderModel.cs" />
     <Compile Include="Models\DetailModel.cs" />
     <Compile Include="Models\FilterProductsModel.cs" />
     <Compile Include="Models\ImageModel.cs" />
     <Compile Include="Models\DetailViewModel.cs" />
+    <Compile Include="Models\OrderFormModel.cs" />
     <Compile Include="Models\SearchProducts.cs" />
+    <Compile Include="Models\SuitabilityCarResult.cs" />
     <Compile Include="Models\UpdateDetailModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -214,7 +221,7 @@
     <Content Include="Views\Home\Contacts.cshtml" />
     <Content Include="Views\Home\Catalog.cshtml" />
     <Content Include="Views\Home\DeliveryDetails.cshtml" />
-    <Content Include="Views\Home\Order.cshtml" />
+    <Content Include="Views\Orders\OrderForm.cshtml" />
     <Content Include="Views\Home\Basket.cshtml" />
     <Content Include="Views\ManageProducts\CreateNewCar.cshtml" />
     <Content Include="Views\Shared\_AdminLayout.cshtml" />
@@ -237,6 +244,12 @@
     <Content Include="Views\Products\GetProductList.cshtml" />
     <Content Include="Views\Products\SearchProducts.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\ManageProducts\GetFullCarListByDetail.cshtml" />
+    <Content Include="Views\Orders\OrderDetails.cshtml" />
+    <Content Include="Views\Events\EventList.cshtml" />
+    <Content Include="Views\Orders\SuccessOrderForm.cshtml" />
+    <Content Include="Views\Orders\OrderList.cshtml" />
+    <Content Include="Views\Orders\ProcessOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -246,11 +259,21 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Implementaton\" />
+    <Folder Include="Intrfaces\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Polyurethane.Core\Polyurethane.Core.csproj">
+      <Project>{85caf0f2-c767-402d-8f2c-ce4a6a0af6b3}</Project>
+      <Name>Polyurethane.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Polyurethane.Data\Polyurethane.Data.csproj">
       <Project>{2829802A-4EEA-417D-A848-7F02D5D75B03}</Project>
       <Name>Polyurethane.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Polyurethane.Utils\Polyurethane.Utils.csproj">
+      <Project>{9F797D8F-0344-488D-979F-0B86FDB440CF}</Project>
+      <Name>Polyurethane.Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

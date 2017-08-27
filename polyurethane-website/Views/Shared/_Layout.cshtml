@@ -177,14 +177,14 @@
                             <div class="widget sep-top-lg">
                                 <h3 class="upper widget-title">Швидкий зв`язок:</h3>
                                 <div class="textwidget">
-                                    <form method="post" action="/Home/ContactMail" id="contactform">
+                                    <form method="post" action="/Home/SendQuickMail" id="contactform" enctype="multipart/form-data">
                                         <div class="form wpcf7-form .form-control">
                                             <div class="controls controls-row">
                                                 <input type="text" name="name" placeholder="ім'я" class="form-control"><br>
                                                 <input type="text" name="email" placeholder="E-mail" class="form-control"><br>
                                             </div>
                                             <div class="controls">
-                                                <textarea name="comment" rows="4" placeholder="Повідомлення" class="form-control"></textarea><br>
+                                                <textarea name="message" rows="4" placeholder="Повідомлення" class="form-control"></textarea><br>
                                             </div>
                                             <input type="submit" id="submit" class="btn btn-primary" value="Надіслати">
                                         </div>

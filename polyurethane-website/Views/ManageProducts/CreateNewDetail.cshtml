@@ -9,9 +9,9 @@
             <fieldset>
                 <legend class="text-center">Додавання продукту</legend>
                 <div class="form-group">
-                    <label class="col-lg-2 control-label">Назва</label>
+                    <label class="col-lg-2 control-label">Код запчастини (выд виробника)</label>
                     <div class="col-lg-4">
-                        <input type="text" class="form-control" id="detail-name" placeholder="">
+                        <input type="text" class="form-control" id="detail-name" placeholder="V10-7184-1">
                     </div>
                 </div>
                 <div class="form-group">
@@ -57,6 +57,25 @@
                         <span class="help-block"></span>
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="col-md-4 col-md-offset-2">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <h3 class="panel-title col-md-12">Підходить для: <a class="btn btn-default btn-sm pull-right" data-toggle="modal" data-target="#selectCarModal">Вибрати</a></h3>
+                                </div>
+                            </div>
+                            <div class="panel-body" id="selected-cars">
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    @*<label class="col-lg-2 control-label">Підходить для:</label>
+                    <div class="col-lg-4">
+                        <>
+                    </div>*@
+                </div>
             </fieldset>
             <div class="form-group">
                 <div class="col-lg-10 col-lg-offset-2">
@@ -68,15 +87,91 @@
     </div>
 </div>
 
+
+<!-- Select car modal form -->
+<div id="selectCarModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Виберіть автомобілі</h4>
+            </div>
+            <div class="modal-body">
+                <div id="wrap">
+                    <div class="product-head">
+                        <div id="form"></div>
+                        <div class="clear"></div>
+                    </div>
+                    
+                    <div id="list" class="list-group table-of-contents">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal" onclick="ApplySelectedCars()">Ок</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 <script>
+    (function ($) {
+        jQuery.expr[':'].Contains = function(a,i,m){
+            return (a.textContent || a.innerText || "").toUpperCase().indexOf(m[3].toUpperCase())>=0;
+        };
+
+        function filterList(header, list) {
+            var form = $("<form>").attr({"class":"filterform","action":"#"}),
+                input = $("<input>").attr({ "class": "filterinput", "type": "text" });
+
+            $(form).append(input).appendTo(header);
+
+            $(input)
+                .change( function () {
+                    var filter = $(this).val();
+                    if(filter) {
+                        var matches = $(list).find('label:Contains(' + filter + ')').parent();
+                        $('a', list).not(matches).hide();
+                        matches.show();
+                    } else {
+                        $(list).find("a").show();
+                    }
+                    return false;
+                })
+                .keyup( function () {
+                    $(this).change();
+                });
+        }
+
+        $(function () {
+            filterList($("#form"), $("#list"));
+            $('#list').load("/management/car/full-list-by-detail");
+        });
+    }(jQuery));
+
+    function ApplySelectedCars() {
+        var container = $('#selected-cars').empty();
+        $("#list").find('input:checked').each(function(index, item) {
+            var span = $('<span class="label label-success" style="margin-right: 5px;"></span>')
+                .html($(item).parent().text()).attr("carId", $(item).attr("carid"));
+
+            container.append(span);
+        });
+
+    }
+
     function UpdateProduct() {
         var product = {
             DetailName: $('#detail-name').val(),
             ShortDescription: $('#short-description').val(),
             Description: $('#description').val(),
             Price: $('#price').val(),
-            Params: []
-        };
+            Params: [],
+            Cars: []
+    };
         debugger;
         $('[name="param-line"]').each(function(index, item) {
             var name = $(item).find('[name="name"]').val();
@@ -90,6 +185,10 @@
             }
         });
 
+        // get car list
+        $("span[carid]").each(function(index, item) {
+            product.Cars.push($(item).attr("carid"));
+        });
 
         //params-container
         //short-description

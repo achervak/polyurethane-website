@@ -14,5 +14,6 @@ namespace polyurethane_website.Models
         public string Description { get; set; }
         public double Price { get; set; }
         public List<DetailParamModel> Params { get; set; } = new List<DetailParamModel>();
+        public List<string> Cars { get; set; } = new List<string>();
     }
 }

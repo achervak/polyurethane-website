@@ -5,20 +5,27 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using polyurethane_website.Mappers;
 using polyurethane_website.Models;
 using Polyurethane.Data.Entities;
 using Polyurethane.Data.Interfaces;
+using Polyurethane.Data.Interfaces.DataManagers;
+using Polyurethane.Data.Models.Orders;
 
 namespace polyurethane_website.Controllers.Products
 {
     public class ProductsController : Controller
     {
         private readonly IDataProvider _dataProvider;
+        private readonly IOrderDataManager _orderDataManager;
+        private readonly IMapper _mapper;
 
-        public ProductsController(IDataProvider dataProvider)
+        public ProductsController(IDataProvider dataProvider, IOrderDataManager orderDataManager, IMapper mapper)
         {
+            _orderDataManager = orderDataManager;
             _dataProvider = dataProvider;
+            _mapper = mapper;
         }
 
         [HttpGet]
