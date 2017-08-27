@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -53,26 +56,60 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\ConfigurationEntiy.cs" />
+    <Compile Include="Entities\SmtpConfiguration.cs" />
+    <Compile Include="Entities\TemplatesEntity.cs" />
+    <Compile Include="Implementation\Communication\EmailCommunication.cs" />
+    <Compile Include="Implementation\DataManagers\ConfigurationManager.cs" />
+    <Compile Include="Implementation\DataManagers\OrderDataManager.cs" />
     <Compile Include="DbContext\PolyurethaneContext.cs" />
     <Compile Include="Entities\BaseEntity.cs" />
     <Compile Include="Entities\CarEntity.cs" />
     <Compile Include="Entities\DetailEntity.cs" />
     <Compile Include="Entities\DetailInCarEntity.cs" />
+    <Compile Include="Entities\EventEntity.cs" />
+    <Compile Include="Entities\OrderEntity.cs" />
     <Compile Include="Entities\ParameterEntity.cs" />
     <Compile Include="Entities\ImageEntity.cs" />
     <Compile Include="Entities\ImageInDetailEntity.cs" />
     <Compile Include="Entities\ImageInCarEntity.cs" />
     <Compile Include="Entities\ParamGroupEntity.cs" />
+    <Compile Include="Entities\UserEntity.cs" />
+    <Compile Include="Implementation\DataManagers\TemplateManager.cs" />
+    <Compile Include="Implementation\EventLogger.cs" />
     <Compile Include="Initializers\PolyurethaneContextInitializer.cs" />
+    <Compile Include="Interfaces\DataManagers\IConfigurationManager.cs" />
+    <Compile Include="Interfaces\Communication\IEmailCommunication.cs" />
+    <Compile Include="Interfaces\DataManagers\IOrderDataManager.cs" />
+    <Compile Include="Interfaces\DataManagers\ITemplateManager.cs" />
     <Compile Include="Interfaces\IDataProvider.cs" />
+    <Compile Include="Interfaces\IEventLogger.cs" />
+    <Compile Include="Mapping\OrdersProfile.cs" />
+    <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\DetailParamModel.cs" />
     <Compile Include="Models\Detail.cs" />
+    <Compile Include="Models\Orders\CreateOrder.cs" />
+    <Compile Include="Models\Orders\Order.cs" />
+    <Compile Include="Models\Orders\OrderedDetail.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\EFDataProvider.cs" />
+    <Compile Include="Implementation\EFDataProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Providers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Polyurethane.Core\Polyurethane.Core.csproj">
+      <Project>{85CAF0F2-C767-402D-8F2C-CE4A6A0AF6B3}</Project>
+      <Name>Polyurethane.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Polyurethane.Utils\Polyurethane.Utils.csproj">
+      <Project>{9F797D8F-0344-488D-979F-0B86FDB440CF}</Project>
+      <Name>Polyurethane.Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

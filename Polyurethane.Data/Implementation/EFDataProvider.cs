@@ -20,7 +20,28 @@ namespace Polyurethane.Data.Providers
             _connectionString = connectionString;
         }
 
-        
+
+        public string ConnectionString {
+            get { return _connectionString; }
+        }
+
+        public async Task<IEnumerable<EventEntity>> GetEvents(Expression<Func<EventEntity, bool>> filter = null)
+        {
+            using (var db = new PolyurethaneContext(_connectionString))
+            {
+                if (filter == null)
+                    return await db.Events.OrderByDescending(x => x.EventTime).Take(1000).ToListAsync()
+                        .ConfigureAwait(continueOnCapturedContext: false);
+
+                return await db.Events
+                    .Where(filter)
+                    .OrderByDescending(x => x.EventTime)
+                    .Take(1000)
+                    .ToListAsync()
+                    .ConfigureAwait(continueOnCapturedContext: false);
+            }
+        }
+
         public async Task<CarEntity> CreateCar(CarEntity car)
         {
             using (var db = new PolyurethaneContext(_connectionString))
@@ -46,7 +67,28 @@ namespace Polyurethane.Data.Providers
             using (var db = new PolyurethaneContext(_connectionString))
             {
                 db.Configuration.LazyLoadingEnabled = false;
-                return await db.Details.Include(x => x.Images).Include("Params.Group").FirstOrDefaultAsync(x => x.Id == guid);
+                return await db.Details.Include(x => x.Images).Include("Params.Group").Include(x => x.Cars).FirstOrDefaultAsync(x => x.Id == guid);
+            }
+        }
+
+        public async Task<IEnumerable<CarEntity>> GetCars(Expression<Func<CarEntity, bool>> filter)
+        {
+            using (var db = new PolyurethaneContext(_connectionString))
+            {
+                return await db.Cars.Include(x => x.Details)
+                    .Where(filter)
+                    .ToListAsync()
+                    .ConfigureAwait(continueOnCapturedContext: false);
+            }
+        }
+
+        public async Task<IEnumerable<CarEntity>> GetCars()
+        {
+            using (var db = new PolyurethaneContext(_connectionString))
+            {
+                return await db.Cars.Include(x => x.Details)
+                    .ToListAsync()
+                    .ConfigureAwait(continueOnCapturedContext: false);
             }
         }
 
@@ -111,6 +153,28 @@ namespace Polyurethane.Data.Providers
             }
         }
 
+        public async Task<DetailEntity> SetDetailCars(DetailEntity detail, IEnumerable<string> guids)
+        {
+            using (var db = new PolyurethaneContext(_connectionString))
+            {
+                db.Details.Attach(detail);
+                var dbCars = db.Cars.Where(x => guids.Contains(x.Id.ToString()));
+                //-- remove unsuitable cars
+
+                //-- add new cars
+                detail.Cars.Clear();
+                foreach (var dbCar in dbCars)
+                {
+                    detail.Cars.Add(dbCar);
+                }
+
+               await db.SaveChangesAsync()
+                    .ConfigureAwait(continueOnCapturedContext: false);
+
+                return detail;
+            }
+        }
+
         public async Task<ImageEntity> CreateImage(ImageEntity image)
         {
             using (var db = new PolyurethaneContext(_connectionString))
@@ -155,7 +219,9 @@ namespace Polyurethane.Data.Providers
         {
             using (var db = new PolyurethaneContext(_connectionString))
             {
-                return await db.Details.Include(x => x.Images)
+                return await db.Details
+                    .Include(x => x.Images)
+                    .Include(x => x.Cars)
                     .Include("Params.Group")
                     .Where(filter)
                     .ToListAsync()

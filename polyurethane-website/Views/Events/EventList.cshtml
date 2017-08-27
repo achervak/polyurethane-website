@@ -1,0 +1,33 @@
+﻿@{
+    ViewBag.Title = "Events";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using Polyurethane.Utils.Helpers
+@model List<Polyurethane.Data.Entities.EventEntity>
+
+<h4>Events</h4>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Event.Description()</td>
+            <td>@item.EventTime</td>
+            <td>@item.LoggedBy</td>
+            <td>@item.Details</td>
+            <td>@item.MoreDetils</td>
+        </tr>
+    }
+    </tbody>
+</table>

@@ -16,5 +16,6 @@ namespace polyurethane_website.Models
         public List<ImageModel> Images { get; set; }  = new List<ImageModel>();
         public List<DetailParamModel> Params { get; set; }  = new List<DetailParamModel>();
         public ImageModel MainImage { get; set; } = new ImageModel();
+        public List<CarModel> SuitableCars { get; set; } = new List<CarModel>();
     }
 }

@@ -1,0 +1,168 @@
+﻿
+@{
+    ViewBag.Title = "Order";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using Polyurethane.Core.Enums
+@using Polyurethane.Utils.Helpers
+@model polyurethane_website.Models.OrderFormModel
+
+<div class="container delivery_form">
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-horizontal" enctype="multipart/form-data" method="post" action="/order/create">
+                <fieldset>
+                    <legend class="text-center">Доставка</legend>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Email</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="email" placeholder="Email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Телефон</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="phoneNumber" placeholder="+38 (097) 777 77 77">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Ім'я</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="FirstName" placeholder="Іван">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-md-4 control-label">Прізвище</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="LastName" placeholder="Іванов">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputText" class="col-md-4 control-label">Місто</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="City" placeholder="Місто">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Доставка</label>
+                        <div class="col-md-8">
+                            @foreach (var item in Enum.GetValues(typeof(DeliveryType)).Cast<DeliveryType>())
+                            {
+                                if ((int)item != 0)
+                                {
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="deliveryType" value="@item">
+                                            @item.Description()
+                                        </label>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Форма оплати</label>
+                        <div class="col-md-8">
+                            @foreach (var item in Enum.GetValues(typeof(PaymentType)).Cast<PaymentType>())
+                            {
+                                if ((int) item != 0)
+                                {
+                                    <div class="radio">
+                                        <label>
+                                            <input type="radio" name="paymentType" value="@item">
+                                            @item.Description()
+                                        </label>
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Служба доставки</label>
+                        <div class="col-md-8">
+                            <select class="form-control" name="deiveryService">
+                                @foreach (var item in Enum.GetValues(typeof(DeliveryServiceType)).Cast<DeliveryServiceType>())
+                                {
+                                    if ((int) item != 0)
+                                    {
+                                        <option value="item">@item.Description()</option>
+                                    }
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label  class="col-md-4 control-label">Адреса доставки</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="deliveryAddress" placeholder="Адреса">
+                        </div>
+                    </div>
+                    @{ var i = 0; }
+                    @foreach (var detail in Model.Details)
+                    {
+                        <input type="hidden" name="Details[@(i++)]" value="@detail.Guid">
+                    }
+                    <div class="form-group">
+                        <label class="col-md-4 control-label">Коментарі</label>
+                        <div class="col-md-8">
+                            <input type="text" class="form-control" name="orderDetails" placeholder="додаткові коментарі">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-8 col-md-offset-4">
+                            <button type="submit" class="btn btn-primary">Відправити</button>
+                            <button type="reset" class="btn btn-default">Відмінити</button>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Обрані деталі</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Код</th>
+                                <th>Назва</th>
+                                <th>Ціна</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @{ i = 1; }
+                            @foreach (var detail in Model.Details)
+                            {
+                                <tr detailId="@detail.Guid">
+                                    <td>
+                                        @(i++)
+                                    </td>
+                                    <td>
+                                        @detail.Name
+                                    </td>
+                                    <td>
+                                        @detail.ShortDescription
+                                    </td>
+                                    <td>
+                                        @detail.Price грн
+                                    </td>
+                                </tr>
+                            }
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td style="font-weight: bold">@Model.Details.Sum(x => x.Price) грн</td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

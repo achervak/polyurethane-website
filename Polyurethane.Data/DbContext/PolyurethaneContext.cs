@@ -16,6 +16,13 @@ namespace Polyurethane.Data.DbContext
         public DbSet<DetailEntity> Details { get; set; }
         public DbSet<ParameterEntity> DetailParams { get; set; }
         public DbSet<ParamGroupEntity> ParamGroup { get; set; }
+        public DbSet<OrderEntity> Orders { get; set; }
+        public DbSet<EventEntity> Events { get; set; }
+        public DbSet<UserEntity> Customers { get; set; }
+        public DbSet<SmtpConfiguration> SmtpConfigurations { get; set; }
+        public DbSet<ConfigurationEntiy> Configurations { get; set; }
+        public DbSet<TemplatesEntity> Templates { get; set; }
+
         //public DbSet<DetailInCarEntity> DetailsInCar { get; set; }
         public DbSet<ImageInCarEntity> ImagesInCar { get; set; }
         //public DbSet<ImageInDetailEntity> ImagesInDetail { get; set; }
@@ -67,6 +74,11 @@ namespace Polyurethane.Data.DbContext
                 .WithMany(x => x.Parameters)
                 .Map(x => x.MapKey("GroupId"));
 
+            modelBuilder.Entity<OrderEntity>()
+                .HasRequired(x => x.Customer)
+                .WithMany(x => x.Orders)
+                .HasForeignKey(x => x.CustomerId);
+            
 
 
                 //x.

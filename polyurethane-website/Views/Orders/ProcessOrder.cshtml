@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Замовлення";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using Polyurethane.Utils.Helpers
+@model Polyurethane.Data.Models.Orders.Order
+    
+<h3>Замовлення: @Model.OrderId.ToString("D5") [@Model.OrderStatus.Description()]</h3>
+
+

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using polyurethane_website.Mappers;
 using polyurethane_website.Models;
 using Polyurethane.Data.Entities;
 using Polyurethane.Data.Interfaces;
@@ -20,14 +21,33 @@ namespace polyurethane_website.Controllers.Products
         {
             _dataProvider = dataProvider;
         }
+        
+        [Route("management/car/full-list-by-detail/{datailGuid}")]
+        [Route("management/car/full-list-by-detail/")]
+        public async Task<ViewResult> GetFullCarListByDetail(Guid? datailGuid)
+        {
+            if (!datailGuid.HasValue)
+                datailGuid = Guid.Empty;
+                    
+            var carList = await _dataProvider.GetCars();
+            var mapper = new CarMapper();
+            var model = from car in carList
+                select new SuitabilityCarResult()
+                { 
+                    Car = mapper.Map(car),
+                    IsSuitable = car.Details.Any( x => x.Id == datailGuid)
+                };
+
+            return View(model);
+        }
+
         [HttpGet]
         [Route("management/detail/create")]
         public ViewResult CreateNewDetail()
         {
             return View();
         }
-
-
+        
         [HttpPost]
         [Route("management/detail/{guid}/add-image/")]
         public async Task AddDetailToImage(Guid guid)
@@ -86,13 +106,7 @@ namespace polyurethane_website.Controllers.Products
                 Redirect("management/detail/create");
 
             await _dataProvider.SetDetailParams(dbDetail, detail.Params);
-
-            //await _dataProvider.SetDetailParams(dbDetail, new List<DetailParamModel>()
-            //{
-            //    new DetailParamModel() { Key = "width", Value = "35", IsFilter = false},
-            //    new DetailParamModel() { Key = "height", Value = "20", IsFilter = false},
-            //    new DetailParamModel() { Key = "color", Value = "Blue", IsFilter = true}
-            //});
+            await _dataProvider.SetDetailCars(dbDetail, detail.Cars);
 
             return Json(new { Id = dbDetail.Id });
         }

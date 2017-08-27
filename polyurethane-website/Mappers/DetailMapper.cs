@@ -29,7 +29,8 @@ namespace polyurethane_website.Mappers
                     Key = x.Group.Name,
                     IsFilter = x.Group.IsFilter,
                     Value = x.Value
-                }).ToList()
+                }).ToList(),
+                SuitableCars = entity.Cars.Select( x => new CarMapper().Map(x)).ToList()
             };
             //-- set main image
             detail.MainImage = detail.Images.FirstOrDefault() ?? new ImageModel()
